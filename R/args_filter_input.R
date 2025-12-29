@@ -20,11 +20,10 @@
 #'   will provide the arguments for select inputs. \cr
 #'
 #'   `choices_asis` \tab
-#'   *(character, factor, list, logical)*. Logical. If `TRUE`, the choices
+#'   *(character, factor, logical)*. Logical. If `TRUE`, the choices
 #'   provided to select inputs will not be modified. If `FALSE` (the default),
 #'   duplicate values will be removed and the choices will be sorted. Only
-#'   applies when `x` is of class `character`, `factor`, `list`, or
-#'   `logical`. \cr
+#'   applies when `x` is of class `character`, `factor`, or `logical`. \cr
 #'
 #'   `server` \tab
 #'   If `TRUE`, indicates that the choices will be provided server-side. In

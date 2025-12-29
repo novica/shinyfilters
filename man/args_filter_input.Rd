@@ -34,11 +34,10 @@ the arguments for range date inputs. Only applies when \code{x} is of class
 will provide the arguments for select inputs. \cr
 
 \code{choices_asis} \tab
-\emph{(character, factor, list, logical)}. Logical. If \code{TRUE}, the choices
+\emph{(character, factor, logical)}. Logical. If \code{TRUE}, the choices
 provided to select inputs will not be modified. If \code{FALSE} (the default),
 duplicate values will be removed and the choices will be sorted. Only
-applies when \code{x} is of class \code{character}, \code{factor}, \code{list}, or
-\code{logical}. \cr
+applies when \code{x} is of class \code{character}, \code{factor}, or \code{logical}. \cr
 
 \code{server} \tab
 If \code{TRUE}, indicates that the choices will be provided server-side. In
