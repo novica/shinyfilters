@@ -31,7 +31,9 @@ reference:
 - contents:
   - args_filter_input
   - arg_name_input_generics
-  - call_filter_input
   - get_filter_logical  
   - get_input_ids
   - get_input_labels
+- title: Internal functions
+- contents:
+  - call_filter_input
