@@ -155,6 +155,20 @@ method(get_filter_logical, list(class_POSIXt, class_POSIXt)) <- function(
 	filter_combine_method,
 	...
 ) {
+	if (is.character(filter_combine_method)) {
+		filter_combine_method <-
+			switch(
+				filter_combine_method,
+				"&" = `&`,
+				"and" = `&`,
+				"|" = `|`,
+				"or" = `|`,
+				stop(sprintf(
+					"Unknown `filter_combine_method` value: %s",
+					filter_combine_method
+				))
+			)
+	}
 	if (!is.function(filter_combine_method)) {
 		stop("Argument `filter_combine_method` must be a function.")
 	}

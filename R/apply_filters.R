@@ -68,21 +68,6 @@ apply_filters <- function(
 		return(x)
 	}
 
-	if (is.character(filter_combine_method)) {
-		filter_combine_method <-
-			switch(
-				filter_combine_method,
-				"&" = `&`,
-				"and" = `&`,
-				"|" = `|`,
-				"or" = `|`,
-				stop(sprintf(
-					"Unknown `filter_combine_method` value: %s",
-					filter_combine_method
-				))
-			)
-	}
-
 	filter_logical <- ._prepare_filter_logical(
 		x = x,
 		filter_list = filter_list,
