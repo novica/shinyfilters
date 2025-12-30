@@ -22,18 +22,16 @@ reference:
 - contents: 
   - filterInput
   - updateFilterInput
-- title: Usage with data.frames
+- title: Usage with shiny
 - contents: 
   - serverFilterInput
   - apply_filters
   - get_input_ids
   - get_input_labels
+  - get_input_values
 - title: Customize shinyfilters
 - contents:
   - args_filter_input
   - arg_name_input_generics
   - call_filter_input
-  - get_filter_logical
-- title: Utilities
-- contents:
-  - get_input_values
+  - get_filter_logical  
