@@ -48,11 +48,6 @@ method(
 	"inputId"
 }
 
-## Method: data.frame ####
-method(arg_name_input_id, class_data.frame) <- function(x, ...) {
-	stop("`arg_name_input_id()` is not implemented for data.frames.")
-}
-
 # Generic: arg_name_input_label ####
 #' @rdname arg_name_input_generics
 #' @export
@@ -73,11 +68,6 @@ method(
 		class_POSIXt
 ) <- function(x, ...) {
 	"label"
-}
-
-## Method: data.frame ####
-method(arg_name_input_label, class_data.frame) <- function(x, ...) {
-	stop("`arg_name_input_label()` is not implemented for data.frames.")
 }
 
 # Generic: arg_name_input_value ####
