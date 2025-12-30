@@ -26,8 +26,6 @@ reference:
 - contents: 
   - serverFilterInput
   - apply_filters
-  - get_input_ids
-  - get_input_labels
   - get_input_values
 - title: Customize shinyfilters
 - contents:
@@ -35,3 +33,5 @@ reference:
   - arg_name_input_generics
   - call_filter_input
   - get_filter_logical  
+  - get_input_ids
+  - get_input_labels
