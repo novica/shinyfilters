@@ -53,3 +53,35 @@ as_list_ <- function(x) {
 	}
 	return(as.list(x))
 }
+
+all_trues <- function(x) {
+	all_something(x, TRUE)
+}
+
+all_falses <- function(x) {
+	all_something(x, FALSE)
+}
+
+all_something <- function(x, something) {
+	rep(something, len(x))
+}
+
+len <- function(x) {
+	len <- dim(x)[[1]]
+	if (is.null(len)) {
+		len <- length(x)
+	}
+	return(len)
+}
+
+check_is_nonempty_string <- function(x) {
+	if (
+		!identical(length(x), 1L) ||
+			is.null(x) ||
+			is.na(x) ||
+			!is.character(x) ||
+			identical(x, "")
+	) {
+		stop(sprintf("`%s` must be a non-empty string", deparse(substitute(x))))
+	}
+}
