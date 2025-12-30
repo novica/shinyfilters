@@ -83,3 +83,72 @@ apply_filters <- function(
 	}
 	return(x[filter_logical])
 }
+
+._prepare_filter_logical <- function(
+	x,
+	filter_list,
+	filter_combine_method,
+	...
+) {
+	if (is.character(filter_combine_method)) {
+		filter_combine_method <-
+			switch(
+				filter_combine_method,
+				"&" = `&`,
+				"and" = `&`,
+				"|" = `|`,
+				"or" = `|`,
+				stop(sprintf(
+					"Unknown `filter_combine_method` value: %s",
+					filter_combine_method
+				))
+			)
+	}
+	if (!is.function(filter_combine_method)) {
+		stop("Argument `filter_combine_method` must be a function.")
+	}
+	x_length <- len(x)
+	filt_out <-
+		Reduce(
+			filter_combine_method,
+			lapply(
+				names(filter_list),
+				function(column_name) {
+					res <-
+						get_filter_logical(
+							x,
+							filter_list[[column_name]],
+							column_name,
+							...
+						)
+					._check_filter_logical(res, x_length, column_name)
+					return(res)
+				}
+			)
+		)
+	._check_filter_logical(filt_out, x_length)
+	return(filt_out)
+}
+
+._check_filter_logical <- function(filter_res, x_length, column_name = NULL) {
+	if (!is.null(column_name)) {
+		column_str <- sprintf("on column `%s` ", column_name)
+	} else {
+		column_str <- ""
+	}
+
+	if (!inherits(filter_res, "logical")) {
+		stop(sprintf("Filter %sdid not return a logical vector.", column_str))
+	}
+
+	if (!identical(length(filter_res), x_length)) {
+		stop(
+			sprintf(
+				"Filter %sreturned a logical vector of length %d, but expected length %d.",
+				column_str,
+				length(filter_res),
+				x_length
+			)
+		)
+	}
+}
