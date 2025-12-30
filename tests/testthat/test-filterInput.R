@@ -358,3 +358,82 @@ test_that("POSIXlt + `range` not provided -> shiny::dateInput", {
 		label = ""
 	)
 })
+
+# data.frames ####
+
+test_that("data.frame with mixed types returns htmltools::tagList", {
+	res <- filterInput(test_df)
+	expect_s3_class(res, "shiny.tag.list")
+})
+
+test_that("data.frame with mixed types creates correct number of inputs", {
+	res <- filterInput(test_df)
+	# Should have 4 inputs (one per column)
+	expect_equal(length(res), ncol(test_df))
+})
+
+test_that("data.frame list has correct names", {
+	res <- filterInput(test_df)
+	# The names should match the column names
+	expect_equal(names(res), names(test_df))
+})
+
+test_that("data.frame chr_col (character) -> shiny::selectInput", {
+	res <- filterInput(test_df)
+	args_shiny_chr <- c(
+		list(
+			inputId = get_input_ids(test_df[, "chr_col", drop = FALSE]),
+			label = get_input_labels(test_df[, "chr_col", drop = FALSE])
+		),
+		args_filter_input(test_df$chr_col)
+	)
+	expect_identical(
+		res$chr_col,
+		do.call(shiny::selectInput, args_shiny_chr)
+	)
+})
+
+test_that("data.frame fct_col (factor) -> shiny::selectInput", {
+	res <- filterInput(test_df)
+	args_shiny_fct <- c(
+		list(
+			inputId = get_input_ids(test_df[, "fct_col", drop = FALSE]),
+			label = get_input_labels(test_df[, "fct_col", drop = FALSE])
+		),
+		args_filter_input(test_df$fct_col)
+	)
+	expect_identical(
+		res$fct_col,
+		do.call(shiny::selectInput, args_shiny_fct)
+	)
+})
+
+test_that("data.frame num_col (numeric) -> shiny::numericInput", {
+	res <- filterInput(test_df)
+	args_shiny_num <- c(
+		list(
+			inputId = get_input_ids(test_df[, "num_col", drop = FALSE]),
+			label = get_input_labels(test_df[, "num_col", drop = FALSE])
+		),
+		args_filter_input(test_df$num_col)
+	)
+	expect_identical(
+		res$num_col,
+		do.call(shiny::numericInput, args_shiny_num)
+	)
+})
+
+test_that("data.frame dte_col (Date) -> shiny::dateInput", {
+	res <- filterInput(test_df)
+	args_shiny_dte <- c(
+		list(
+			inputId = get_input_ids(test_df[, "dte_col", drop = FALSE]),
+			label = get_input_labels(test_df[, "dte_col", drop = FALSE])
+		),
+		args_filter_input(test_df$dte_col)
+	)
+	expect_identical(
+		res$dte_col,
+		do.call(shiny::dateInput, args_shiny_dte)
+	)
+})

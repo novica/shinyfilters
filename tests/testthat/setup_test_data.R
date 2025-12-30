@@ -54,3 +54,11 @@ choices_int_na <- rep(NA_integer_, 10)
 # Create test lists for unique.default testing
 test_lst_with_duplicates <- list(a = 1, b = 2, c = 1, d = 3, e = 2)
 test_lst_with_na <- list(a = 1, b = NA, c = 1, d = 3, e = NA)
+
+# Create test data.frames for filterInput testing
+test_df <- data.frame(
+	chr_col = sample(choices_chr, 10, TRUE),
+	fct_col = sample(choices_fct, 10, TRUE),
+	num_col = sample(choices_num, 10, TRUE),
+	dte_col = sample(choices_dte, 10, TRUE)
+)
