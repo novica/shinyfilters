@@ -38,31 +38,6 @@ s7_check_is_valid_list_dispatch <- function(x, function_name) {
 	}
 }
 
-# Generic: ._call_provided_f ####
-._call_provided_f <- new_generic(
-	name = "._call_provided_f",
-	dispatch_args = c(".f", "args"),
-	fun = function(.f, args = NULL, x, ...) {
-		S7_dispatch()
-	}
-)
-
-## Method: function, NULL ####
-method(
-	._call_provided_f,
-	list(class_function, NULL)
-) <- function(.f, args, x) {
-	.f(x)
-}
-
-## Method: function, list ####
-method(
-	._call_provided_f,
-	list(class_function, class_list)
-) <- function(.f, args, x) {
-	do.call(.f, c(list(x = x, args)))
-}
-
 set_names <- function(object = nm, nm) {
 	names(object) <- nm
 	return(object)
