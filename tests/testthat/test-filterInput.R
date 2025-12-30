@@ -240,7 +240,56 @@ test_that("character + `textbox = TRUE` + `area = TRUE` -> shiny::textAreaInput"
 })
 
 ## Radio Buttons ####
-### logical ####
+### factor or list + `radio = TRUE` ####
+test_that("factor + `radio = TRUE` -> shiny::radioButtons", {
+	expect_shiny_radioButtons(
+		x = choices_fct,
+		inputId = "",
+		label = "",
+		radio = TRUE
+	)
+})
+
+### list + `radio = TRUE` ####
+test_that("list + `radio = TRUE` -> shiny::radioButtons", {
+	expect_shiny_radioButtons(
+		x = choices_lst,
+		inputId = "",
+		label = "",
+		radio = TRUE
+	)
+})
+
+### logical + `radio = TRUE` ####
+test_that("logical + `radio = TRUE` -> shiny::radioButtons", {
+	expect_shiny_radioButtons(
+		x = choices_log,
+		inputId = "",
+		label = "",
+		radio = TRUE
+	)
+})
+
+### character + `textbox` not provided + `radio = TRUE` ####
+test_that("character + `textbox not provided` + `radio = TRUE` -> shiny::radioButtons", {
+	expect_shiny_radioButtons(
+		x = choices_chr,
+		inputId = "",
+		label = "",
+		radio = TRUE
+	)
+})
+
+### character + `textbox = FALSE` + `radio = TRUE` ####
+test_that("character + `textbox = FALSE` + `radio = TRUE` -> shiny::radioButtons", {
+	expect_shiny_radioButtons(
+		x = choices_chr,
+		inputId = "",
+		label = "",
+		textbox = FALSE,
+		radio = TRUE
+	)
+})
 
 ## Numeric Input ####
 ### numeric + `slider` not provided ####
