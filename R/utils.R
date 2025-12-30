@@ -9,7 +9,7 @@ check_named_list_or_null <- function(value) {
 	if (!is.list(value)) {
 		stop("Value must be a NULL or a list.")
 	}
-	if (any(names(value) == "")) {
+	if (is.null(names(value)) || any(names(value) == "")) {
 		stop("All list elements must be named.")
 	}
 	if (!identical(names(value), unique(names(value)))) {
