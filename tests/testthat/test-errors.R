@@ -21,6 +21,17 @@ test_that("apply_filters: filter_combine_method must be function", {
 	)
 })
 
+# arg_name_input_id ####
+## invalid implementation ####
+### returns NULL ####
+test_that("arg_name_input_id: implementation returns NULL", {
+	method(arg_name_input_id, ClassCharacter) <- function(x) NULL
+	expect_error(
+		filterInput(ClassCharacter(letters), ns = shiny::NS("mymodule")),
+		"The result of `arg_name_input_id\\(x\\)` cannot be `NULL` when `ns` is provided"
+	)
+})
+
 # args_filter_input ####
 ## invalid args_* provided ####
 test_that("args_filter_input validates args_unique must be list", {
