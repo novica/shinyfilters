@@ -21,7 +21,11 @@ s7_check_is_valid_list_dispatch <- function(x, function_name) {
 	cls <- S7_class(x)
 	if (!is.null(cls)) {
 		stop(
-			sprintf("No method found for `%s()` for class `%s`.", function_name, cls)
+			sprintf(
+				"No method found for `%s()` for class `%s`.",
+				function_name,
+				cls@name
+			)
 		)
 	}
 }
