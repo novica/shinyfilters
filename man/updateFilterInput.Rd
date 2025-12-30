@@ -2,7 +2,7 @@
 % Please edit documentation in R/updateFilterInput.R
 \name{updateFilterInput}
 \alias{updateFilterInput}
-\title{Create a \pkg{shiny} Input}
+\title{Update a \pkg{shiny} Input}
 \usage{
 updateFilterInput(x, ...)
 }

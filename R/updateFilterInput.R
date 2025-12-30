@@ -3,7 +3,7 @@
 # Generic to create shiny inputs from objects
 
 # Generic: filterInput ####
-#' Create a \pkg{shiny} Input
+#' Update a \pkg{shiny} Input
 #'
 #' Updates a \pkg{shiny} input based the type of object `x` and other arguments.
 #'
