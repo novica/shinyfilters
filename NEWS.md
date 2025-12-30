@@ -11,6 +11,8 @@
 
 ## Bugfixes
 * Use `anyNA()` for NA checks and `inherits()` for class checks, per `jarl check .` (thanks @novica!)
+* The error message now displays for invalid s7 list dispatches
+* An error is now thrown when an implementation of `args_filter_input()` returns a completely unnamed list
 
 ## Documentation:
 * All examples now correctly use `inputId` ([#17](https://github.com/joshwlivingston/shinyfilters/issues/17))
