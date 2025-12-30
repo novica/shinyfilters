@@ -21,40 +21,46 @@
 #  @param tags cannot be used for these arguments without a CRAN error, since
 #  they are not named formals of the generic.
 #  ---------
-#' \tabular{ll}{
-#'   `area` \tab
+#' \describe{
+#'   \item{area}{
 #'    *(character)*. Logical. Controls whether to use  [shiny::textAreaInput]
 #'    (`TRUE`) or [shiny::textInput] (`FALSE`, default). Only applies when
-#'    `textbox` is `TRUE`. \cr
+#'    `textbox` is `TRUE`.}
 #'
-#'   `range` \tab
+#'   \item{radio}{
+#'     *(character, factor, list, logical)*. Logical. Controls whether to use
+#'     [shiny::radioButtons] (`TRUE`) or a dropdown input (`FALSE`, default).
+#'     For character vectors, `radio` only applies if `textbox` is `FALSE`,
+#'     the default.}
+#'
+#'   \item{range}{
 #'   *(Date, POSIXt)*. Logical. Controls whether to use [shiny::dateRangeInput]
-#'   (`TRUE`) or [shiny::dateInput] (`FALSE`, default). \cr
+#'   (`TRUE`) or [shiny::dateInput] (`FALSE`, default).}
 #'
-#'   `selectize` \tab
+#'   \item{selectize}{
 #'   *(character, factor, list, logical)*. Logical. Controls whether to use
 #'   [shiny::selectizeInput] (`TRUE`) or [shiny::selectInput]
 #'   (`FALSE`, default). For character vectors, `selectize` only applies if
-#'   `textbox` is `FALSE`, the default. \cr
+#'   `textbox` is `FALSE`, the default.}
 #'
-#'   `slider` \tab
+#'   \item{slider}{
 #'   *(numeric)*. Logical. Controls whether to use [shiny::sliderInput]
-#'   (`TRUE`) or [shiny::numericInput] (`FALSE`, default)  . \cr
+#'   (`TRUE`) or [shiny::numericInput] (`FALSE`, default).}
 #'
-#'   `textbox` \tab
+#'   \item{textbox}{
 #'   *(character)*. Logical. Controls whether to use a text input
-#'   (`TRUE`) or a dropdown input (`FALSE`, default). \cr
+#'   (`TRUE`) or a dropdown input (`FALSE`, default).}
 #'
-#'   `ns` \tab
+#'   \item{ns}{
 #'   An optional namespace created by [shiny::NS()]. Useful when using
-#'   `filterInput()` on a data.frame inside a \pkg{shiny} module.
+#'   `filterInput()` on a data.frame inside a \pkg{shiny} module.}
 #'
 #' }
 #'
 #' Remaining arguments passed to `...` are passed to the [args_filter_input()]
 #' or the selected input function.
 #'
-#' @return One of the following \pkg{shiny} inputs is returned, based on the
+#' @returns One of the following \pkg{shiny} inputs is returned, based on the
 #' type of object passed to `x`, and other specified arguments. See
 #' `vignette("filter-input-catalog")` for the full list of examples.
 #'
@@ -211,7 +217,7 @@ method(filterInput, class_POSIXt) <- function(x, ...) {
 #' @param ... Arguments passed to either [args_filter_input()] or provided
 #'   input function.
 #'
-#' @return The result of calling the provided input function.
+#' @returns The result of calling the provided input function.
 #'
 #' @examplesIf interactive()
 #' library(S7)
