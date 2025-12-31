@@ -48,6 +48,22 @@ test_that("args_filter_input validates args_sort must be list", {
 	)
 })
 
+test_that("args_filter_input validates args_unique list is named", {
+	lst <- list(1, b = 2)
+	expect_error(
+		args_filter_input(choices_chr, args_unique = lst),
+		"All supplied arguments must be named\\."
+	)
+})
+
+test_that("args_filter_input validates args_sort list is named", {
+	lst <- list(1, b = 2)
+	expect_error(
+		args_filter_input(choices_chr, args_sort = lst),
+		"All supplied arguments must be named\\."
+	)
+})
+
 test_that("args_filter_input validates args_unique names are unique", {
 	lst <- list(a = 1, b = 2)
 	names(lst) <- c("a", "a")
