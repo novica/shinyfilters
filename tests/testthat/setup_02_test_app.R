@@ -1,4 +1,3 @@
-library(DT)
 library(shiny)
 library(shinytest2)
 
