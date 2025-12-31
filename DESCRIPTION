@@ -23,6 +23,7 @@ Suggests:
     htmltools,
     knitr,
     rmarkdown,
+    shinytest2 (>= 0.4.1),
     shinyWidgets,
     testthat (>= 3.0.0)
 VignetteBuilder: 
