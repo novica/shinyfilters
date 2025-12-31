@@ -103,6 +103,10 @@ serverFilterInput <- function(
 		)
 		x_filt_list <- do.call(apply_filters, args_apply_filters)
 		update_input <- function(x_filt) {
+			val <- input[[get_input_ids(x_filt)]]
+			if (!is.null(val) || !identical(length(val), 0L)) {
+				return(invisible())
+			}
 			updateFilterInput(x = x_filt, input = input, ...)
 		}
 		lapply(x_filt_list, update_input)

@@ -135,25 +135,19 @@ method(updateFilterInput, class_character) <- function(x, ...) {
 }
 
 ## Method: data.frame ####
-method(updateFilterInput, class_data.frame) <- function(x, input, ...) {
+method(updateFilterInput, class_data.frame) <- function(x, ...) {
 	mapply(
 		function(col, nm) {
-			val <- input[[nm]]
-			if (!is.null(val) || !identical(length(val), 0L)) {
-				return(invisible())
+			base_args <- list(col)
+			args_provided <- list(...)
+			inputId <- arg_name_input_id(col, ...)
+			if (!(inputId %in% names(args_provided))) {
+				base_args <- c(base_args, list(nm))
+				names(base_args) <- c("x", inputId)
+			} else {
+				names(base_args) <- c("x")
 			}
-
-			base_args <- list(col, nm)
-			names(base_args) <- c("x", arg_name_input_id(col, ...))
-
-			do.call(
-				updateFilterInput,
-				c(
-					base_args,
-					list(...),
-					set_names(as_list_(val), arg_name_input_value(col, ...))
-				)
-			)
+			do.call(updateFilterInput, c(base_args, args_provided))
 		},
 		x,
 		get_input_ids(x),
