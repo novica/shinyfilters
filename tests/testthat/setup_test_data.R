@@ -62,3 +62,6 @@ test_df <- data.frame(
 	num_col = sample(choices_num, 10, TRUE),
 	dte_col = sample(choices_dte, 10, TRUE)
 )
+
+# create list to filter `test_df`
+filter_list <- list(chr_col = c("a", "b"))
