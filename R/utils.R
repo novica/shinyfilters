@@ -58,10 +58,6 @@ all_trues <- function(x) {
 	all_something(x, TRUE)
 }
 
-all_falses <- function(x) {
-	all_something(x, FALSE)
-}
-
 all_something <- function(x, something) {
 	rep(something, len(x))
 }
