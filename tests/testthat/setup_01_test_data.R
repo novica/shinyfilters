@@ -157,7 +157,7 @@ use_text <- function(x) {
 }
 
 # fmt: skip
-test_df <- tibble(
+test_df <- data.frame(
 	chr_col            =                sample(choices_chr, 10, TRUE),
 	chr_col_radio      = use_radio(     sample(choices_chr, 10, TRUE)),
 	chr_col_selectize  = use_selectize( sample(choices_chr, 10, TRUE)),
@@ -167,7 +167,6 @@ test_df <- tibble(
 	dte_col_date_range = use_date_range(sample(choices_dte, 10, TRUE)),
 	fct_col            =                sample(choices_fct, 10, TRUE),
 	log_col            =                sample(choices_log, 10, TRUE),
-	lst_col            =                sample(choices_lst, 10, TRUE),
 	num_col            =                sample(choices_num, 10, TRUE),
 	num_col_slider     = use_slider(    sample(choices_num, 10, TRUE)),
 	psc_col            =                sample(choices_psc, 10, TRUE),

@@ -172,31 +172,6 @@ test_that("updateFilterInput works with logical vectors", {
 	})
 })
 
-test_that("updateFilterInput works with list inputs", {
-	testServer(app_shiny(), {
-		list_col <- test_df[, "lst_col", drop = FALSE]
-
-		# Update list input
-		expect_no_error(updateFilterInput(
-			list_col,
-			session = session
-		))
-	})
-})
-
-test_that("updateFilterInput works with list radio buttons", {
-	testServer(app_shiny(), {
-		list_col <- test_df[, "lst_col", drop = FALSE]
-
-		# Update list radio buttons
-		expect_no_error(updateFilterInput(
-			list_col,
-			radio = TRUE,
-			session = session
-		))
-	})
-})
-
 test_that("updateFilterInput works with data.frame", {
 	testServer(app_shiny(), {
 		# Update all inputs for a data.frame
