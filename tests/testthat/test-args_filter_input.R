@@ -168,3 +168,28 @@ test_that("args_filter_input() passes multiple sort args for character with NA",
 	)
 	expect_identical(result, expected)
 })
+
+# server = TRUE ####
+test_that("args_filter_input() with server = TRUE returns empty string for choices (character)", {
+	result <- args_filter_input(choices_chr_with_na, server = TRUE)
+	expected <- list(choices = "")
+	expect_identical(result, expected)
+})
+
+test_that("args_filter_input() with server = TRUE returns empty string for choices (factor)", {
+	result <- args_filter_input(choices_fct_with_na, server = TRUE)
+	expected <- list(choices = "")
+	expect_identical(result, expected)
+})
+
+test_that("args_filter_input() with server = TRUE returns empty string for choices (logical)", {
+	result <- args_filter_input(choices_log_with_na, server = TRUE)
+	expected <- list(choices = "")
+	expect_identical(result, expected)
+})
+
+test_that("args_filter_input() with server = TRUE returns empty string for choices (list)", {
+	result <- args_filter_input(choices_lst_with_na, server = TRUE)
+	expected <- list(choices = "")
+	expect_identical(result, expected)
+})
