@@ -259,6 +259,71 @@ test_that("ns requires inputId argument", {
 	)
 })
 
+# serverFilterInput ####
+test_that("serverFilterInput() with reactive() throws error when missing required columns", {
+	expect_error(
+		AppDriver$new(
+			load_timeout = 1000L,
+			shinyApp(
+				ui = fluidPage(
+					sidebarLayout(
+						sidebarPanel(
+							filterInput(test_df)
+						),
+						mainPanel()
+					)
+				),
+				server = function(input, output, session) {
+					input_list <- reactive({
+						list(
+							chr_col = "a",
+							num_col = 5
+						)
+					})
+					serverFilterInput(test_df, input = input_list)
+				}
+			)
+		),
+		"Missing required input values: `chr_col_radio`, `chr_col_selectize`, `chr_col_textarea`, `chr_col_text`, `dte_col`, `dte_col_date_range`, `fct_col`, `log_col`, `num_col_slider`, `psc_col`, `psl_col`"
+	)
+})
+
+test_that("serverFilterInput() with reactive() warns when extra columns provided", {
+	app <- AppDriver$new(
+		app = shinyApp(
+			ui = fluidPage(
+				sidebarLayout(
+					sidebarPanel(
+						filterInput(test_df)
+					),
+					mainPanel()
+				)
+			),
+			server = function(input, output, session) {
+				input_list <- reactive({
+					out <- vector("list", ncol(test_df))
+					names(out) <- get_input_ids(test_df)
+					out <- c(out, list(unsupported = "x"))
+				})
+				serverFilterInput(test_df, input = input_list)
+			}
+		)
+	)
+	# Get the app's logs which contain warnings
+	logs <- app$get_logs()
+
+	app$stop()
+
+	# Check that the warning message appears in the logs
+	expect_true(
+		any(grepl(
+			"Ignoring unsupported input values: `unsupported`",
+			logs,
+			fixed = TRUE
+		))
+	)
+})
+
 # updateFilterInput ####
 test_that("updateFilterInput: radio and selectize cannot both be TRUE", {
 	expect_error(
