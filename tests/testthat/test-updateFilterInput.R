@@ -160,6 +160,30 @@ test_that("updateFilterInput works with factor radio buttons", {
 	})
 })
 
+test_that("updateFilterInput works with lists", {
+	testServer(
+		shinyApp(
+			fluidPage(
+				sidebarLayout(
+					sidebarPanel(
+						filterInput(as.list(letters), inputId = "letters", label = "")
+					),
+					mainPanel()
+				)
+			),
+			function(input, output, session) {}
+		),
+		{
+			list_filt <- as.list(letters[1:10])
+			# Update logical input
+			expect_no_error(updateFilterInput(
+				list_filt,
+				session = session
+			))
+		}
+	)
+})
+
 test_that("updateFilterInput works with logical vectors", {
 	testServer(app_shiny(), {
 		logical_col <- test_df[, "log_col", drop = FALSE]
