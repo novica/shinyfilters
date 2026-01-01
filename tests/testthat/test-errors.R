@@ -221,6 +221,19 @@ test_that("filterInput: method not found for S7 object passed as list", {
 	)
 })
 
+## argument supplied that is provided by args_filter_input() ####
+test_that("filterInput: arg supplied that is provided by args_filter_input()", {
+	expect_error(
+		filterInput(letters, choices = letters),
+		"The argument `choices` is not supported in when used with `character` objects."
+	)
+
+	expect_error(
+		filterInput(choices_dte, min = min(choices_dte)),
+		"The arguments\n( )+- `min`\n( )+- `max`\n( )+- `value`\nare not supported in when used with `Date` objects."
+	)
+})
+
 # `ns` ####
 test_that("ns must be result of shiny::NS()", {
 	expect_error(
