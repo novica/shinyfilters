@@ -47,13 +47,6 @@ set_names <- function(object = nm, nm) {
 	return(object)
 }
 
-as_list_ <- function(x) {
-	if (is.null(x)) {
-		return(list(x))
-	}
-	return(as.list(x))
-}
-
 all_trues <- function(x) {
 	all_something(x, TRUE)
 }
