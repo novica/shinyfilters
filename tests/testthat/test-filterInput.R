@@ -424,7 +424,7 @@ test_that("data.frame with mixed types creates correct number of inputs", {
 test_that("data.frame list has correct names", {
 	res <- filterInput(test_df)
 	# The names should match the column names
-	expect_equal(names(res), names(test_df))
+	expect_equal(names(res), get_input_ids(test_df))
 })
 
 test_that("data.frame chr_col (character) -> shiny::selectInput", {
