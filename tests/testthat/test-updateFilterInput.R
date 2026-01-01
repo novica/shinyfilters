@@ -22,30 +22,63 @@ test_that("updateFilterInput works with character vectors", {
 })
 
 test_that("updateFilterInput works with character textbox", {
-	testServer(app_shiny(), {
-		chr_col <- test_df[, "chr_col_textarea", drop = FALSE]
-
-		# Update text input
-		expect_no_error(updateFilterInput(
-			chr_col,
-			textbox = TRUE,
-			session = session
-		))
-	})
+	testServer(
+		shinyApp(
+			fluidPage(
+				sidebarLayout(
+					sidebarPanel(
+						filterInput(
+							letters,
+							inputId = "letters",
+							label = "",
+							textbox = TRUE
+						)
+					),
+					mainPanel()
+				)
+			),
+			function(input, output, session) {}
+		),
+		{
+			# Update text input
+			expect_no_error(updateFilterInput(
+				letters[1:3],
+				textbox = TRUE,
+				session = session
+			))
+		}
+	)
 })
 
 test_that("updateFilterInput works with character textarea", {
-	testServer(app_shiny(), {
-		chr_col <- test_df[, "chr_col_textarea", drop = FALSE]
-
-		# Update textarea input
-		expect_no_error(updateFilterInput(
-			chr_col,
-			textbox = TRUE,
-			area = TRUE,
-			session = session
-		))
-	})
+	testServer(
+		shinyApp(
+			fluidPage(
+				sidebarLayout(
+					sidebarPanel(
+						filterInput(
+							letters,
+							inputId = "letters",
+							label = "",
+							textbox = TRUE,
+							area = TRUE
+						)
+					),
+					mainPanel()
+				)
+			),
+			function(input, output, session) {}
+		),
+		{
+			# Update textarea input
+			expect_no_error(updateFilterInput(
+				letters[1:3],
+				textbox = TRUE,
+				area = TRUE,
+				session = session
+			))
+		}
+	)
 })
 
 test_that("updateFilterInput works with radio buttons", {
