@@ -109,7 +109,7 @@ serverFilterInput <- function(
 			}
 			args <- list(col, id)
 			names(args) <- c("x", arg_name_input_id(col))
-			do.call(updateFilterInput, args)
+			do.call(updateFilterInput, c(args, list(...)))
 		}
 		mapply(update_input, x_filt, get_input_ids(x_filt))
 		out_input$input_values <- input
